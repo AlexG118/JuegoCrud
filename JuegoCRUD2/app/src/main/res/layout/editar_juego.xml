@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/new_edit_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/nombre"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/new_edit_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/desc"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/new_edit_precio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/precio"
+        android:inputType="numberDecimal" />
+
+
+    <TableRow android:stretchColumns="2" >
+        <TextView
+            android:id="@+id/new_edit_Rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rating" />
+        <RatingBar
+            android:id="@+id/new_edit_RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1.0" />
+
+    </TableRow>
+    <ImageView android:id="@+id/imgView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+    </ImageView>
+
+    <Button android:id="@+id/btn_editarimagen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:text="@string/editarimagen" android:layout_gravity="center"></Button>
+
+    <Button
+        android:id="@+id/btn_editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/editar" />
+</TableLayout>
