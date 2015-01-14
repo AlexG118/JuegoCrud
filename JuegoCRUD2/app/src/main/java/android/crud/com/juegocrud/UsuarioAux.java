@@ -17,7 +17,7 @@ public class UsuarioAux {
 
     public ArrayList<Juego> getJuegos() {
         if (this.juegos == null)
-            this.juegos = new ArrayList<Juego>();
+            this.juegos = new ArrayList<>();
         return this.juegos;
     }
 

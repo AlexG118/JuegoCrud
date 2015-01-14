@@ -16,16 +16,16 @@ public class Listar extends ListActivity{
         super.onCreate(icicle);
         setContentView(R.layout.lista);
 
-        ArrayList<Juego> usuarios = new ArrayList<Juego>();
+        ArrayList<Juego> juegos = new ArrayList<>();
 
 
         Intent it = getIntent();
         Bundle params = it != null ? it.getExtras(): null;
 
         if (params != null)
-            usuarios = (ArrayList<Juego>) params.get("listUser");
+            juegos = (ArrayList<Juego>) params.get("listaJuegos");
 
-        setListAdapter(new UsuarioAdapter(this, usuarios));
+        setListAdapter(new UsuarioAdapter(this, juegos));
 
         Button btn_volver = (Button) findViewById(R.id.btn_volver);
         btn_volver.setOnClickListener(new OnClickListener() {

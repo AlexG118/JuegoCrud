@@ -23,7 +23,7 @@ public class Editar  extends Activity{
         if(it.getExtras() != null){
 
             final int position = it.getExtras().getInt("position");
-            final Juego juego = (Juego) sing.getJuegos().get(position);
+            final Juego juego = sing.getJuegos().get(position);
 
             if(juego != null){
 
@@ -34,8 +34,8 @@ public class Editar  extends Activity{
                 final TextView precio = (TextView) findViewById(R.id.new_edit_precio);
                 precio.setText(juego.getPrecio());
 
-                final RatingBar rating = (RatingBar)findViewById(R.id.new_edit_RatingBar);
-                rating.setNumStars(juego.getPuntuacion());
+                /*final RatingBar rating = (RatingBar)findViewById(R.id.new_edit_RatingBar);
+                rating.setNumStars(juego.getPuntuacion());*/
 
 
 
@@ -46,7 +46,7 @@ public class Editar  extends Activity{
                         juego.setNombre(nombre.getText().toString());
                         juego.setDesc(desc.getText().toString());
                         juego.setPrecio(precio.getInputType());
-                        juego.setPuntuacion(rating.getNumStars());
+                        /*juego.setPuntuacion(rating.getNumStars());*/
                         Intent it = new Intent(Editar.this, MainActivity.class);
                         startActivity(it);
                     }

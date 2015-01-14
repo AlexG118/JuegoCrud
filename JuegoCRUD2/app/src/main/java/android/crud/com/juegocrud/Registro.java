@@ -32,11 +32,18 @@ public class Registro extends Activity{
 
                 RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
+                ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
+
+                    @Override
+                    public void onRatingChanged(RatingBar ratingBar, float rating,boolean fromUser) {
+                        ratingBar.setRating(rating);
+                    }
+                });
                 //ImageView imagen = (ImageView) findViewById(R.id.imgView);
                 // imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
                 Juego juego = new Juego(nombre.getText().toString(), descripcion.getText().toString(),
-                        precio.getInputType(), ratingBar.getNumStars());
+                        Integer.parseInt(precio.getText().toString()),ratingBar.getNumStars());
 
                 Intent it = new Intent(Registro.this, MainActivity.class);
                 it.putExtra("juego", juego);

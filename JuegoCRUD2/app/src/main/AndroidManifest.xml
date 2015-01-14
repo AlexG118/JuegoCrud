@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="android.crud.com.juegocrud.Registro"></activity>
+        <activity android:name="android.crud.com.juegocrud.Listar"></activity>
+        <activity android:name="android.crud.com.juegocrud.Editar"></activity>
     </application>
 
 </manifest>

@@ -56,7 +56,7 @@ public class UsuarioAdapter extends BaseAdapter{
 
         ((TextView) v.findViewById(R.id.text_nombre)).setText(juego.getNombre());
         ((TextView) v.findViewById(R.id.text_desc)).setText(juego.getDesc());
-        ((TextView) v.findViewById(R.id.text_precio)).setText(juego.getPrecio());
+        ((TextView) v.findViewById(R.id.text_precio)).setText((String.valueOf(juego.getPrecio())));
         ((RatingBar) v.findViewById(R.id.text_rating)).setNumStars(juego.getPuntuacion());
 
         btn_edit = (Button) v.findViewById(R.id.btn_editar);
