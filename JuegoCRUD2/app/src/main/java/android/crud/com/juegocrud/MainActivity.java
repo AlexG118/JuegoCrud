@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 
 public class MainActivity extends Activity {
@@ -14,10 +18,27 @@ public class MainActivity extends Activity {
     private Button btn_registrar, btn_listar;
     private final int REGISTRO = 1;
     UsuarioAux sing = UsuarioAux.getInstance();
+    Juego juego;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        try{
+
+            FileInputStream fin = new FileInputStream("MisJuegos.txt");
+            ObjectInputStream ois = new ObjectInputStream(fin);
+            juego = (Juego) ois.readObject();
+            ois.close();
+
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+
+        }
+
+
         setContentView(R.layout.activity_main);
         btnListener();
     }
@@ -25,7 +46,7 @@ public class MainActivity extends Activity {
 
     public void btnListener(){
 
-        btn_registrar = (Button) findViewById(R.id.btn_cadastrar);
+        btn_registrar = (Button) findViewById(R.id.btn_registrar);
         btn_listar = (Button) findViewById(R.id.btn_listar);
 
         btn_registrar.setOnClickListener(new OnClickListener() {
@@ -57,4 +78,5 @@ public class MainActivity extends Activity {
         }
 
     }
+
 }

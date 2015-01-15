@@ -8,10 +8,8 @@
     <string name="listar">Listar</string>
     <string name="volver">Volver</string>
     <string name="editar">Editar</string>
-    <string name="editarimagen">Cambiar Imagen</string>
     <string name="eliminar">Eliminar</string>
     <string name="nombre">Nombre</string>
-    <string name="rating">Rating</string>
     <string name="desc">Descripción</string>
     <string name="precio">Precio</string>
 </resources>

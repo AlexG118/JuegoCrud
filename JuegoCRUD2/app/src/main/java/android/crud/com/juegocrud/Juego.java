@@ -4,14 +4,17 @@ import java.io.Serializable;
 
 public class Juego implements Serializable{
 
-    private String nombre, descripcion,imagen;
-    private int precio,puntuacion;
+    private String nombre, descripcion;
+    private int precio;
 
-    public Juego(String nombre, String descripcion, int precio, int puntuacion) {
+    public Juego(String nombre, String descripcion, int precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.puntuacion = puntuacion;
+    }
+
+    public Juego() {
+
     }
 
     public String getNombre() {
@@ -44,28 +47,10 @@ public class Juego implements Serializable{
 
 
 
-    public int getPuntuacion() {
-        return puntuacion;
-    }
-
-    public void setPuntuacion(int puntuacion) {
-        this.puntuacion = puntuacion;
-    }
-
-
-
-    /*public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-*/
     @Override
     public String toString() {
         return "Juego [nombre=" + nombre + ", descripcion=" + descripcion + ", precio="
-                + precio + ", puntuacion=" + puntuacion +  "]";
+                + precio +  "]";
     }
 
 

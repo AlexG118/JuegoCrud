@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
 public class Editar  extends Activity{
 
 
@@ -23,30 +26,36 @@ public class Editar  extends Activity{
         if(it.getExtras() != null){
 
             final int position = it.getExtras().getInt("position");
-            final Juego juego = sing.getJuegos().get(position);
+            final Juego juego = (Juego) sing.getJuegos().get(position);
 
             if(juego != null){
 
                 final TextView nombre = (TextView) findViewById(R.id.new_edit_nombre);
                 nombre.setText(juego.getNombre());
-                final TextView desc = (TextView) findViewById(R.id.new_edit_nombre);
+                final TextView desc = (TextView) findViewById(R.id.new_edit_desc);
                 desc.setText(juego.getDesc());
                 final TextView precio = (TextView) findViewById(R.id.new_edit_precio);
-                precio.setText(juego.getPrecio());
-
-                /*final RatingBar rating = (RatingBar)findViewById(R.id.new_edit_RatingBar);
-                rating.setNumStars(juego.getPuntuacion());*/
-
-
+                precio.setText(String.valueOf(juego.getPrecio()));
 
                 Button btn_editar = (Button) findViewById(R.id.btn_editar);
                 btn_editar.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         juego.setNombre(nombre.getText().toString());
                         juego.setDesc(desc.getText().toString());
-                        juego.setPrecio(precio.getInputType());
-                        /*juego.setPuntuacion(rating.getNumStars());*/
+                        juego.setPrecio(Integer.parseInt(precio.getText().toString()));
+                        try{
+
+                            FileOutputStream fout = new FileOutputStream("MisJuegos.txt");
+                            ObjectOutputStream oos = new ObjectOutputStream(fout);
+                            oos.writeObject(juego);
+                            oos.close();
+
+                        }catch(Exception ex){
+                            ex.printStackTrace();
+                        }
+
                         Intent it = new Intent(Editar.this, MainActivity.class);
                         startActivity(it);
                     }

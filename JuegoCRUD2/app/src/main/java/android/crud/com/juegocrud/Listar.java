@@ -14,10 +14,10 @@ public class Listar extends ListActivity{
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+
         setContentView(R.layout.lista);
 
         ArrayList<Juego> juegos = new ArrayList<>();
-
 
         Intent it = getIntent();
         Bundle params = it != null ? it.getExtras(): null;
