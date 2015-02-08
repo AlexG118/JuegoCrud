@@ -7,40 +7,29 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 
 public class MainActivity extends Activity {
-
     private Button btn_registrar, btn_listar;
     private final int REGISTRO = 1;
-    UsuarioAux sing = UsuarioAux.getInstance();
-    Juego juego;
-
+    ArrayList<Juego> juegos = new ArrayList<>();
+    String filename = "ListaJuegos.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        try{
-
-            FileInputStream fin = new FileInputStream("MisJuegos.txt");
-            ObjectInputStream ois = new ObjectInputStream(fin);
-            juego = (Juego) ois.readObject();
-            ois.close();
-
-
-        }catch(Exception ex){
-            ex.printStackTrace();
-
-        }
-
-
         setContentView(R.layout.activity_main);
+
+        loadItems();
         btnListener();
+
     }
 
 
@@ -60,11 +49,12 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent it = new Intent(MainActivity.this, Listar.class);
                 Bundle params = new Bundle();
-                params.putSerializable("listaJuegos", sing.getJuegos());
+                params.putSerializable("listaJuegos", juegos);
                 it.putExtras(params);
-                startActivity(it);
+                startActivityForResult(it, 2);
             }
         });
+
     }
 
     @Override
@@ -73,10 +63,53 @@ public class MainActivity extends Activity {
             Bundle params = it != null ? it.getExtras(): null;
             if (params != null) {
                 Juego juego = (Juego) params.get("juego");
-                sing.getJuegos().add(juego);
+                juegos.add(juego);
+
+                saveItems(juegos);
             }
         }
+        if(codigo == 2){
+            Bundle params = it != null ? it.getExtras(): null;
+            if (params != null) {
+                juegos = (ArrayList<Juego>) it.getSerializableExtra("listaJuegos");
 
+                saveItems(juegos);
+            }
+        }
+        if(codigo == 3){
+            Bundle params = it != null ? it.getExtras(): null;
+            if (params != null) {
+                Juego juego = (Juego) it.getSerializableExtra("juego");
+                int position = it.getIntExtra("pos", 0);
+                juegos.set(position, juego);
+                saveItems(juegos);
+            }
+        }
+    }
+    public void loadItems() {
+        ObjectInputStream input = null;
+
+        try {
+            input = new ObjectInputStream(new FileInputStream(new File(getFilesDir(),"") + File.separator+filename));
+            juegos = (ArrayList<Juego>) input.readObject();
+            input.close();
+        } catch (IOException ioe){
+            ioe.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveItems(ArrayList<Juego> juegos) {
+        ObjectOutputStream out = null;
+
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"") + File.separator+filename));
+            out.writeObject(juegos);
+            out.close();
+        } catch (IOException ioe){
+            ioe.printStackTrace();
+        }
     }
 
 }

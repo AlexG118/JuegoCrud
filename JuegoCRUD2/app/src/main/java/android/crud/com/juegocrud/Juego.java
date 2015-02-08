@@ -13,10 +13,6 @@ public class Juego implements Serializable{
         this.precio = precio;
     }
 
-    public Juego() {
-
-    }
-
     public String getNombre() {
         return nombre;
     }

@@ -3,16 +3,29 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-tools:context=".MainActivity" >
+tools:context=".MainActivity"
+    android:background="#ff241cff"
+    android:weightSum="1">
 
-<Button
-    android:id="@+id/btn_registrar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="60dp"
-    android:text="@string/registrar" />
+    <TextView
+        android:layout_width="151dp"
+        android:layout_height="wrap_content"
+        android:text="Mi Lista de Juegos Deseados"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ff000000"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:textAlignment="center" />
 
-<Button
+    <Button
+        android:id="@+id/btn_registrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/registrar" />
+
+    <Button
     android:id="@+id/btn_listar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

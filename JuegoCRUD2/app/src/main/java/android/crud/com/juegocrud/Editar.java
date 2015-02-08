@@ -12,11 +12,9 @@ import android.widget.TextView;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 public class Editar  extends Activity{
-
-
-    UsuarioAux sing = UsuarioAux.getInstance();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +23,8 @@ public class Editar  extends Activity{
 
         if(it.getExtras() != null){
 
-            final int position = it.getExtras().getInt("position");
-            final Juego juego = (Juego) sing.getJuegos().get(position);
+            final Juego juego = (Juego) it.getSerializableExtra("juego");
+            final int position = it.getIntExtra("pos", -1);
 
             if(juego != null){
 
@@ -45,19 +43,13 @@ public class Editar  extends Activity{
                         juego.setNombre(nombre.getText().toString());
                         juego.setDesc(desc.getText().toString());
                         juego.setPrecio(Integer.parseInt(precio.getText().toString()));
-                        try{
-
-                            FileOutputStream fout = new FileOutputStream("MisJuegos.txt");
-                            ObjectOutputStream oos = new ObjectOutputStream(fout);
-                            oos.writeObject(juego);
-                            oos.close();
-
-                        }catch(Exception ex){
-                            ex.printStackTrace();
-                        }
 
                         Intent it = new Intent(Editar.this, MainActivity.class);
-                        startActivity(it);
+                        Bundle params = new Bundle();
+                        params.putSerializable("juego", juego);
+                        params.putInt("pos", position);
+                        it.putExtras(params);
+                        setResult(3, it);
                     }
                 });
             }

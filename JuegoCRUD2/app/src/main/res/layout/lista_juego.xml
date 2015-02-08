@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffffa658"
+    android:id="@+id/lista_juego">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -12,19 +14,25 @@
             android:id="@+id/text_nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:linksClickable="false"
+            android:textColor="#ff000000" />
 
         <TextView
             android:id="@+id/text_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:linksClickable="false"
+            android:textColor="#ff000000" />
 
         <TextView
             android:id="@+id/text_precio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:linksClickable="false"
+            android:textColor="#ff000000" />
 
     </LinearLayout>
 
@@ -37,15 +45,18 @@
         <Button
             android:id="@+id/btn_editar"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="143dp"
+            android:layout_height="46dp"
+            android:background="@drawable/button"
             android:text="@string/editar" />
+
 
         <Button
             android:id="@+id/btn_remover"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/button"
             android:text="@string/eliminar" />
     </LinearLayout>
 </LinearLayout>

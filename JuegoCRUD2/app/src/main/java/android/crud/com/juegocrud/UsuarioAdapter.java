@@ -1,9 +1,11 @@
 package android.crud.com.juegocrud;
 
-import java.util.List;
 
-
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -18,12 +20,12 @@ import android.widget.TextView;
 public class UsuarioAdapter extends BaseAdapter{
 
     private LayoutInflater inflater;
-    private List<Juego> juegos;
-    UsuarioAux sing = UsuarioAux.getInstance();
+    ArrayList<Juego> juegos = new ArrayList<>();
     private Button btn_edit, btn_remove;
+    int position;
 
-    public UsuarioAdapter(Context context, List<Juego> usuarios){
-        this.juegos = usuarios;
+    public UsuarioAdapter(Context context, ArrayList<Juego> juegoslista){
+        this.juegos = juegoslista;
         inflater = LayoutInflater.from(context);
     }
 
@@ -43,13 +45,10 @@ public class UsuarioAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent){
+    public View getView(final int position, View view, ViewGroup parent){
 
-        final Juego u = juegos.get(position);
+        final Juego juego = juegos.get(position);
 
-        final int  p = position;
-
-        Juego juego = juegos.get(position);
         View v = inflater.inflate(R.layout.lista_juego, null);
 
         ((TextView) v.findViewById(R.id.text_nombre)).setText(juego.getNombre());
@@ -64,22 +63,25 @@ public class UsuarioAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(v.getContext(), Editar.class);
-                it.putExtra("position", p);
+                it.putExtra("lista", juegos);
+                it.putExtra("juego", juego);
+                it.putExtra("pos", position);
                 v.getContext().startActivity(it);
-
             }
         });
 
         btn_remove.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                juegos.remove(u);
-                sing.getJuegos().remove(p);
+                juegos.remove(juego);
                 notifyDataSetChanged();
             }
         });
 
         return v;
     }
+
+
+
 
 }

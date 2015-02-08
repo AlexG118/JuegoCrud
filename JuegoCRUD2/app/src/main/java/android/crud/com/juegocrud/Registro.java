@@ -32,16 +32,6 @@ public class Registro extends Activity{
                 Juego juego = new Juego(nombre.getText().toString(), descripcion.getText().toString(),
                         Integer.parseInt(precio.getText().toString()));
 
-                try{
-
-                    FileOutputStream fout = new FileOutputStream("MisJuegos.txt");
-                    ObjectOutputStream oos = new ObjectOutputStream(fout);
-                    oos.writeObject(juego);
-                    oos.close();
-
-                }catch(Exception ex){
-                    ex.printStackTrace();
-                }
 
                 Intent it = new Intent(Registro.this, MainActivity.class);
                 it.putExtra("juego", juego);
